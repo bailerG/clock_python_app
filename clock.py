@@ -2,7 +2,8 @@ import datetime
 
 class clock:
     def __init__(self):
-        pass
+        self.date = None
+        self.time = None
 
     def set_hour(self):
         date_time = datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S/%p")
@@ -15,9 +16,13 @@ class clock:
         else:
                 time = time2 + ' ' + time3
         
-        return date, time
+        self.date = date
+        self.time = time
+        return self.date, self.time
+        
     
     def format_hour(self):
         pass
     
 agora = clock()
+agora.set_hour()

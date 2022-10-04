@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.ttk import *
+import clock_app
 
 # Creates the app window:
 window = Tk()
@@ -25,4 +26,12 @@ date_label = Label(clock_tab, font = 'calibri 40 bold', foreground = 'black')
 date_label.pack(anchor='s')
 
 
-# window.mainloop()
+def update_ui():
+    time_label.config(text = clock_app.clock().execute())
+    # date_label.config(text= date)
+    time_label.after(1000, update_ui())
+    
+
+
+
+window.mainloop()

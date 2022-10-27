@@ -6,6 +6,8 @@ import platform
 class Clock:
 
     def __init__(self):
+        self._stopwatch_counter_num = 10800
+        self._running = None
         self._alarm_minute = None
         self._alarm_hour = None
         self._seconds = None
@@ -40,18 +42,49 @@ class Clock:
 
     def alarm_check(self):
         if self._hour == self._alarm_hour and self._minutes == self._alarm_minute:
-            for i in range(3):
-                if platform.system() == 'Windows':
-                    winsound.Beep(5000, 1000)
-                elif platform.system() == 'Darwin':
-                    os.system('say Time is Up')
-                elif platform.system() == 'Linux':
-                    os.system('beep -f 5000')
+            self.beep()
             return True
         else:
             return False
+
+    @staticmethod
+    def beep():
+        for i in range(3):
+            if platform.system() == 'Windows':
+                winsound.Beep(5000, 1000)
+            elif platform.system() == 'Darwin':
+                os.system('say Time is Up')
+            elif platform.system() == 'Linux':
+                os.system('beep -f 5000')
 
     def alarm_loop(self):
         while self.alarm_check() is False:
             self.get_time()
             self.alarm_check()
+
+    def stopwatch(self, running):
+        self._running = running
+        while self._running:
+            tt = datetime.datetime.fromtimestamp(self._stopwatch_counter_num)
+            self._stopwatch_counter_num += 1
+            return tt.strftime("%H:%M:%S")
+
+    def reset_stopwatch(self):
+        self._stopwatch_counter_num = 10800
+
+
+# print(Clock().get_stopwatch())
+# time.sleep(1)
+# print(Clock().get_stopwatch())
+# time.sleep(1)
+# print(Clock().get_stopwatch())
+# time.sleep(1)
+# print(Clock().get_stopwatch())
+# time.sleep(1)
+# print(Clock().get_stopwatch())
+# time.sleep(1)
+# print(Clock().get_stopwatch())
+# time.sleep(1)
+# print(Clock().get_stopwatch())
+# time.sleep(1)
+# print(Clock().get_stopwatch())

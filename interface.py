@@ -7,6 +7,13 @@ import main
 class ClockUi:
 
     def __init__(self, the_window):
+        self._timer_reset = None
+        self._timer_stop = None
+        self._timer_start = None
+        self._timer_label = None
+        self._timer_instructions_label = None
+        self._timer_get_entry = None
+        self._timer_tab = None
         self._label_update = None
         self._get_stopwatch = main.Clock()
         self._running_stopwatch = None
@@ -35,6 +42,7 @@ class ClockUi:
         self.clock_tab()
         self.alarm_tab()
         self.stopwatch_tab()
+        self.timer_tab()
 
     def tabs(self):
         self._tabs_control = Notebook(self._the_window)
@@ -107,6 +115,23 @@ class ClockUi:
         self._stopwatch_stop.config(state='disabled')
         self._stopwatch_reset.config(state='disabled')
         self._get_stopwatch.reset_stopwatch()
+
+    def timer_tab(self):
+        self._timer_tab = Frame(self._tabs_control)
+        self._tabs_control.add(self._timer_tab, text='Timer')
+        self._timer_get_entry = Entry(self._timer_tab, font='calibiri 15 bold')
+        self._timer_get_entry.pack(anchor='center')
+        self._timer_instructions_label = Label(self._timer_tab, font='calibri 10 bold',
+                                         text="Enter Timer Time. Eg -> 01:30:30, 01 -> Hour, 30 -> Minutes, 30 -> Seconds")
+        self._timer_instructions_label.pack(anchor='s')
+        self._timer_label = Label(self._timer_tab, font='calibri 40 bold', text='Timer')
+        self._timer_label.pack(anchor='center')
+        self._timer_start = Button(self._timer_tab, text='Start', command=None)
+        self._timer_start.pack(anchor='center')
+        self._timer_stop = Button(self._timer_tab, text='Stop', state='disabled', command=None)
+        self._timer_stop.pack(anchor='center')
+        self._timer_reset = Button(self._timer_tab, text='Reset', state='disabled', command=None)
+        self._timer_reset.pack(anchor='center')
 
 
 app = Tk()

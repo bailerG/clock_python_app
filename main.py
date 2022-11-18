@@ -71,20 +71,3 @@ class Clock:
 
     def reset_stopwatch(self):
         self._stopwatch_counter_num = 10800
-
-
-# print(Clock().get_stopwatch())
-# time.sleep(1)
-# print(Clock().get_stopwatch())
-# time.sleep(1)
-# print(Clock().get_stopwatch())
-# time.sleep(1)
-# print(Clock().get_stopwatch())
-# time.sleep(1)
-# print(Clock().get_stopwatch())
-# time.sleep(1)
-# print(Clock().get_stopwatch())
-# time.sleep(1)
-# print(Clock().get_stopwatch())
-# time.sleep(1)
-# print(Clock().get_stopwatch())
